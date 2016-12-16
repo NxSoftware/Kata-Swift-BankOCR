@@ -3,7 +3,14 @@ import XCTest
 
 class CharacterReaderTests: XCTestCase {
     func testEmptyInput_returnsNil() {
-        XCTAssertNil(CharacterReader.read(""), "Empty input should provide nil output")
+      XCTAssertNil(CharacterReader.read(""), "Empty input should provide nil output")
+    }
+
+    func testZero_returns0() {
+      let digit = " _ " +
+                  "| |" +
+                  "|_|"
+      XCTAssertEqual(0, CharacterReader.read(digit), "Given zero, expected 0")
     }
 
 /*
