@@ -19,6 +19,9 @@ class CharacterReader {
         }
 
         if lineNumber == 1 {
+          if charNumber == 0 && char == "|" {
+            bits |= 8
+          }
           if charNumber == 1 && char == "_" {
             bits |= 16
           }
@@ -48,6 +51,8 @@ class CharacterReader {
       return 2
     } else if bits == 87 {
       return 3
+    } else if bits == 27 {
+      return 4
     }
 
     return 0
