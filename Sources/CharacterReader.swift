@@ -9,9 +9,37 @@ class CharacterReader {
       $0 == "\n"
     }
 
+    let bits = sevenSegmentBits(charLines)
+
+    if bits == 63 {
+      return 0
+    } else if bits == 6 {
+      return 1
+    } else if bits == 91 {
+      return 2
+    } else if bits == 79 {
+      return 3
+    } else if bits == 102 {
+      return 4
+    } else if bits == 109 {
+      return 5
+    } else if bits == 125 {
+      return 6
+    } else if bits == 7 {
+      return 7
+    } else if bits == 127 {
+      return 8
+    } else if bits == 111 {
+      return 9
+    }
+
+    return nil
+  }
+
+  private class func sevenSegmentBits(_ lines: [String.CharacterView]) -> Int {
     var bits = 0
 
-    for (lineNumber, line) in charLines.enumerated() {
+    for (lineNumber, line) in lines.enumerated() {
       for (charNumber, char) in line.enumerated() {
 
         if lineNumber == 0 && charNumber == 1 && char == "_" {
@@ -41,33 +69,9 @@ class CharacterReader {
             bits |= 4
           }
         }
-
       }
     }
-
-    if bits == 63 {
-      return 0
-    } else if bits == 6 {
-      return 1
-    } else if bits == 91 {
-      return 2
-    } else if bits == 79 {
-      return 3
-    } else if bits == 102 {
-      return 4
-    } else if bits == 109 {
-      return 5
-    } else if bits == 125 {
-      return 6
-    } else if bits == 7 {
-      return 7
-    } else if bits == 127 {
-      return 8
-    } else if bits == 111 {
-      return 9
-    }
-
-    return nil
+    return bits
   }
 
 }
