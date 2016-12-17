@@ -1,10 +1,6 @@
 class CharacterReader {
 
   class func read(_ sevenSegmentCharacter: String) -> UInt? {
-    guard sevenSegmentCharacter.characters.count > 0 else {
-      return nil
-    }
-
     let charLines = sevenSegmentCharacter.characters.split {
       $0 == "\n"
     }
