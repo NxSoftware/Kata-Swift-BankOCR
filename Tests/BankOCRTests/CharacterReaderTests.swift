@@ -69,6 +69,13 @@ class CharacterReaderTests: XCTestCase {
       XCTAssertEqual(8, CharacterReader.read(digit), "Given eight, expected 8")
     }
 
+    func testNine_returns9() {
+      let digit = " _ " + "\n" +
+                  "|_|" + "\n" +
+                  " _|"
+      XCTAssertEqual(9, CharacterReader.read(digit), "Given nine, expected 9")
+    }
+
 /*
     use case 1
      _  _  _  _  _  _  _  _  _
