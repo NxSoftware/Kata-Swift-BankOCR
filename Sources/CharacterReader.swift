@@ -39,31 +39,25 @@ class CharacterReader {
   private class func sevenSegmentBits(_ lines: [String.CharacterView]) -> Int {
     var bits = 0
 
-    bits |= bitsForLine0(lines[0])
-    bits |= bitsForLine1(lines[1])
-    bits |= bitsForLine2(lines[2])
+    bits |= enabledBits(in: lines, forLine: 0)
+    bits |= enabledBits(in: lines, forLine: 1)
+    bits |= enabledBits(in: lines, forLine: 2)
 
     return bits
   }
 
-  private class func bitsForLine0(_ line: String.CharacterView) -> Int {
-    let index = line.index(after: line.startIndex)
-    if line[index] == "_" {
-      return 1
-    }
-    return 0
-  }
-
-  private class func bitsForLine1(_ line: String.CharacterView) -> Int {
+  private class func enabledBits(in lines: [String.CharacterView],
+                                 forLine lineNumber: Int) -> Int {
     var bits = 0
+    let line = lines[lineNumber]
     for x in line.enumerated() {
       switch x {
       case (0, "|"):
-        bits |= 32
+        bits |= bitMap[lineNumber][0]
       case (1, "_"):
-        bits |= 64
+        bits |= bitMap[lineNumber][1]
       case (2, "|"):
-        bits |= 2
+        bits |= bitMap[lineNumber][2]
       default:
         break
       }
@@ -71,21 +65,10 @@ class CharacterReader {
     return bits
   }
 
-  private class func bitsForLine2(_ line: String.CharacterView) -> Int {
-    var bits = 0
-    for x in line.enumerated() {
-      switch x {
-      case (0, "|"):
-        bits |= 16
-      case (1, "_"):
-        bits |= 8
-      case (2, "|"):
-        bits |= 4
-      default:
-        break
-      }
-    }
-    return bits
-  }
+  private static let bitMap = [
+    [0,  1,  0],
+    [32, 64, 2],
+    [16, 8,  4]
+  ]
 
 }
