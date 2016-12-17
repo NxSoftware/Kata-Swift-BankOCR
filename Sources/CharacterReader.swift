@@ -39,36 +39,27 @@ class CharacterReader {
   private class func sevenSegmentBits(_ lines: [String.CharacterView]) -> Int {
     var bits = 0
 
-    bits |= enabledBits(in: lines, forLine: 0)
-    bits |= enabledBits(in: lines, forLine: 1)
-    bits |= enabledBits(in: lines, forLine: 2)
+    bits |= enabledBits(in: lines[0], forLine: 0)
+    bits |= enabledBits(in: lines[1], forLine: 1)
+    bits |= enabledBits(in: lines[2], forLine: 2)
 
     return bits
   }
 
-  private class func enabledBits(in lines: [String.CharacterView],
+  private class func enabledBits(in line: String.CharacterView,
                                  forLine lineNumber: Int) -> Int {
     var bits = 0
-    let line = lines[lineNumber]
-    for x in line.enumerated() {
-      switch x {
-      case (0, "|"):
-        bits |= bitMap[lineNumber][0]
-      case (1, "_"):
-        bits |= bitMap[lineNumber][1]
-      case (2, "|"):
-        bits |= bitMap[lineNumber][2]
-      default:
-        break
-      }
+    for (charNumber, char) in line.enumerated() {
+      let characterBits = bitMap[lineNumber][charNumber]
+      bits |= characterBits[String(char)] ?? 0
     }
     return bits
   }
 
   private static let bitMap = [
-    [0,  1,  0],
-    [32, 64, 2],
-    [16, 8,  4]
+    [[" ": 0],  ["_": 1],  [" ": 0]],
+    [["|": 32], ["_": 64], ["|": 2]],
+    [["|": 16], ["_": 8],  ["|": 4]]
   ]
 
 }
