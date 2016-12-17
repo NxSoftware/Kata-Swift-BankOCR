@@ -41,23 +41,8 @@ class CharacterReader {
 
     bits |= bitsForLine0(lines[0])
     bits |= bitsForLine1(lines[1])
+    bits |= bitsForLine2(lines[2])
 
-    for (lineNumber, line) in lines.enumerated() {
-      for (charNumber, char) in line.enumerated() {
-
-        if lineNumber == 2 {
-          if charNumber == 0 && char == "|" {
-            bits |= 16
-          }
-          if charNumber == 1 && char == "_" {
-            bits |= 8
-          }
-          if charNumber == 2 && char == "|" {
-            bits |= 4
-          }
-        }
-      }
-    }
     return bits
   }
 
@@ -79,6 +64,23 @@ class CharacterReader {
         bits |= 64
       case (2, "|"):
         bits |= 2
+      default:
+        break
+      }
+    }
+    return bits
+  }
+
+  private class func bitsForLine2(_ line: String.CharacterView) -> Int {
+    var bits = 0
+    for x in line.enumerated() {
+      switch x {
+      case (0, "|"):
+        bits |= 16
+      case (1, "_"):
+        bits |= 8
+      case (2, "|"):
+        bits |= 4
       default:
         break
       }
