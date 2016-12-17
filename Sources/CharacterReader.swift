@@ -59,6 +59,8 @@ class CharacterReader {
       return 6
     } else if bits == 7 {
       return 7
+    } else if bits == 127 {
+      return 8
     }
 
     return 0
