@@ -48,12 +48,10 @@ class CharacterReader {
 
   private class func enabledBits(in line: String.CharacterView,
                                  forLine lineNumber: Int) -> Int {
-    var bits = 0
-    for (charNumber, char) in line.enumerated() {
-      let characterBits = bitMap[lineNumber][charNumber]
-      bits |= characterBits[String(char)] ?? 0
+    return line.enumerated().reduce(0) { bit, char in
+      let characterBits = bitMap[lineNumber][char.offset]
+      return bit | (characterBits[String(char.element)] ?? 0)
     }
-    return bits
   }
 
   private static let bitMap = [
