@@ -39,12 +39,10 @@ class CharacterReader {
   private class func sevenSegmentBits(_ lines: [String.CharacterView]) -> Int {
     var bits = 0
 
+    bits |= bitsForLine0(lines[0])
+
     for (lineNumber, line) in lines.enumerated() {
       for (charNumber, char) in line.enumerated() {
-
-        if lineNumber == 0 && charNumber == 1 && char == "_" {
-          bits |= 1
-        }
 
         if lineNumber == 1 {
           if charNumber == 0 && char == "|" {
@@ -72,6 +70,14 @@ class CharacterReader {
       }
     }
     return bits
+  }
+
+  private class func bitsForLine0(_ line: String.CharacterView) -> Int {
+    let index = line.index(after: line.startIndex)
+    if line[index] == "_" {
+      return 1
+    }
+    return 0
   }
 
 }
