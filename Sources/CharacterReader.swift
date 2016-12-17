@@ -9,31 +9,7 @@ class CharacterReader {
       $0 == "\n"
     }
 
-    let bits = sevenSegmentBits(charLines)
-
-    if bits == 63 {
-      return 0
-    } else if bits == 6 {
-      return 1
-    } else if bits == 91 {
-      return 2
-    } else if bits == 79 {
-      return 3
-    } else if bits == 102 {
-      return 4
-    } else if bits == 109 {
-      return 5
-    } else if bits == 125 {
-      return 6
-    } else if bits == 7 {
-      return 7
-    } else if bits == 127 {
-      return 8
-    } else if bits == 111 {
-      return 9
-    }
-
-    return nil
+    return characterBitMap[sevenSegmentBits(charLines)]
   }
 
   private class func sevenSegmentBits(_ lines: [String.CharacterView]) -> Int {
@@ -54,6 +30,19 @@ class CharacterReader {
     [[" ": 0],  ["_": 1],  [" ": 0]],
     [["|": 32], ["_": 64], ["|": 2]],
     [["|": 16], ["_": 8],  ["|": 4]]
+  ]
+
+  private static let characterBitMap: [Int: UInt] = [
+    63:  0,
+    6:   1,
+    91:  2,
+    79:  3,
+    102: 4,
+    109: 5,
+    125: 6,
+    7:   7,
+    127: 8,
+    111: 9
   ]
 
 }
