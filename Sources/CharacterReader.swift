@@ -15,15 +15,15 @@ class CharacterReader {
       for (charNumber, char) in line.enumerated() {
 
         if lineNumber == 0 && charNumber == 1 && char == "_" {
-          bits |= 4
+          bits |= 1
         }
 
         if lineNumber == 1 {
           if charNumber == 0 && char == "|" {
-            bits |= 8
+            bits |= 32
           }
           if charNumber == 1 && char == "_" {
-            bits |= 16
+            bits |= 64
           }
           if charNumber == 2 && char == "|" {
             bits |= 2
@@ -32,30 +32,30 @@ class CharacterReader {
 
         if lineNumber == 2 {
           if charNumber == 0 && char == "|" {
-            bits |= 32
+            bits |= 16
           }
           if charNumber == 1 && char == "_" {
-            bits |= 64
+            bits |= 8
           }
           if charNumber == 2 && char == "|" {
-            bits |= 1
+            bits |= 4
           }
         }
 
       }
     }
 
-    if bits == 111 {
+    if bits == 63 {
       return 0
-    } else if bits == 3 {
+    } else if bits == 6 {
       return 1
-    } else if bits == 118 {
+    } else if bits == 91 {
       return 2
-    } else if bits == 87 {
+    } else if bits == 79 {
       return 3
-    } else if bits == 27 {
+    } else if bits == 102 {
       return 4
-    } else if bits == 93 {
+    } else if bits == 109 {
       return 5
     } else if bits == 125 {
       return 6
@@ -63,7 +63,7 @@ class CharacterReader {
       return 7
     } else if bits == 127 {
       return 8
-    } else if bits == 95 {
+    } else if bits == 111 {
       return 9
     }
 
