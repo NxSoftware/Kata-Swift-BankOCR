@@ -7,24 +7,31 @@ class CharacterReaderTests: XCTestCase {
     }
 
     func testZero_returns0() {
-      let digit = " _ " +
-                  "| |" +
+      let digit = " _ " + "\n" +
+                  "| |" + "\n" +
                   "|_|"
       XCTAssertEqual(0, CharacterReader.read(digit), "Given zero, expected 0")
     }
 
     func testOne_returns1() {
-      let digit = "   " +
-                  "  |" +
+      let digit = "   " + "\n" +
+                  "  |" + "\n" +
                   "  |"
       XCTAssertEqual(1, CharacterReader.read(digit), "Given one, expected 1")
     }
 
     func testTwo_returns2() {
-      let digit = " _ " +
-                  " _|" +
+      let digit = " _ " + "\n" +
+                  " _|" + "\n" +
                   "|_ "
       XCTAssertEqual(2, CharacterReader.read(digit), "Given two, expected 2")
+    }
+
+    func testThree_returns3() {
+      let digit = " _ " + "\n" +
+                  " _|" + "\n" +
+                  " _|"
+      XCTAssertEqual(3, CharacterReader.read(digit), "Given three, expected 3")
     }
 
 /*

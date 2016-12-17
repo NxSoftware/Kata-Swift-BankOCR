@@ -5,32 +5,52 @@ class CharacterReader {
       return nil
     }
 
-    let numberOfPipes = sevenSegmentCharacter.characters.reduce(0) { count, character in
-      if character == "|" {
-        return count + 1
-      } else {
-        return count
+    let charLines = sevenSegmentCharacter.characters.split {
+      $0 == "\n"
+    }
+
+    var bits = 0
+
+    for (lineNumber, line) in charLines.enumerated() {
+      for (charNumber, char) in line.enumerated() {
+
+        if lineNumber == 0 && charNumber == 1 && char == "_" {
+          bits |= 4
+        }
+
+        if lineNumber == 1 {
+          if charNumber == 1 && char == "_" {
+            bits |= 16
+          }
+          if charNumber == 2 && char == "|" {
+            bits |= 2
+          }
+        }
+
+        if lineNumber == 2 {
+          if charNumber == 0 && char == "|" {
+            bits |= 32
+          }
+          if charNumber == 1 && char == "_" {
+            bits |= 64
+          }
+          if charNumber == 2 && char == "|" {
+            bits |= 1
+          }
+        }
+
       }
     }
 
-    let numberOfUnderscores = sevenSegmentCharacter.characters.reduce(0) { count, character in
-      if character == "_" {
-        return count + 1
-      } else {
-        return count
-      }
-    }
-
-    switch (numberOfPipes, numberOfUnderscores) {
-    case (4, 2):
-      return 0
-    case (2, 0):
+    if bits == 3 {
       return 1
-    case (2, 3):
+    } else if bits == 118 {
       return 2
-    default:
-      return nil
+    } else if bits == 87 {
+      return 3
     }
+
+    return 0
   }
 
 }
