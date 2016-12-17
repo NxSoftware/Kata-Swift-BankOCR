@@ -37,13 +37,9 @@ class CharacterReader {
   }
 
   private class func sevenSegmentBits(_ lines: [String.CharacterView]) -> Int {
-    var bits = 0
-
-    for i in 0..<3 {
-      bits |= enabledBits(in: lines[i], forLine: i)
+    return lines.enumerated().reduce(0) { bit, line in
+      return bit | enabledBits(in: line.element, forLine: line.offset)
     }
-
-    return bits
   }
 
   private class func enabledBits(in line: String.CharacterView,
