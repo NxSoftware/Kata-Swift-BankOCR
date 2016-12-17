@@ -1,16 +1,13 @@
 class CharacterReader {
 
-  class func read(_ sevenSegmentCharacter: String) -> UInt? {
-    let charLines = sevenSegmentCharacter.characters.split {
-      $0 == "\n"
-    }
-
-    return characterBitMap[sevenSegmentBits(charLines)]
+  class func read(_ sevenSegmentCharacter: [String]) -> UInt? {
+    let bits = enabledBits(for: sevenSegmentCharacter)
+    return characterBitMap[bits]
   }
 
-  private class func sevenSegmentBits(_ lines: [String.CharacterView]) -> Int {
+  private class func enabledBits(for lines: [String]) -> Int {
     return lines.enumerated().reduce(0) { bit, line in
-      return bit | enabledBits(in: line.element, forLine: line.offset)
+      return bit | enabledBits(in: line.element.characters, forLine: line.offset)
     }
   }
 
