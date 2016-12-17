@@ -45,7 +45,9 @@ class CharacterReader {
       }
     }
 
-    if bits == 3 {
+    if bits == 111 {
+      return 0
+    } else if bits == 3 {
       return 1
     } else if bits == 118 {
       return 2
@@ -65,7 +67,7 @@ class CharacterReader {
       return 9
     }
 
-    return 0
+    return nil
   }
 
 }
