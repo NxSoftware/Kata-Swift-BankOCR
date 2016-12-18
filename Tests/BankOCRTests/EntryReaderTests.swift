@@ -14,6 +14,14 @@ class EntryReaderTests: XCTestCase {
                  ""]
     XCTAssertEqual("000000000", EntryReader.read(entry), "All zeroes should return 000000000")
   }
+
+  func test111111111_returns111111111() {
+    let entry = ["                           ",
+                 "  |  |  |  |  |  |  |  |  |",
+                 "  |  |  |  |  |  |  |  |  |",
+                 ""]
+    XCTAssertEqual("111111111", EntryReader.read(entry), "All ones should return 111111111")
+  }
   
   /*
   use case 1
