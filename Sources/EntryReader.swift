@@ -1,7 +1,11 @@
 class EntryReader {
 
   class func read(_ lines: [String]) -> String? {
-    return nil
+    guard lines.count == 4 else {
+      return nil
+    }
+
+    return "000000000"
   }
 
 }

@@ -7,6 +7,14 @@ class EntryReaderTests: XCTestCase {
     XCTAssertNil(EntryReader.read([]), "Empty input should return nil")
   }
 
+  func test000000000_returns000000000() {
+    let entry = [" _  _  _  _  _  _  _  _  _ ",
+                 "| || || || || || || || || |",
+                 "|_||_||_||_||_||_||_||_||_|",
+                 ""]
+    XCTAssertEqual("000000000", EntryReader.read(entry), "All zeroes should return 000000000")
+  }
+  
   /*
   use case 1
    _  _  _  _  _  _  _  _  _
