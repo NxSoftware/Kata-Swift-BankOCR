@@ -1,5 +1,7 @@
 class CharacterReader {
 
+  static let length = 3
+
   class func read(_ sevenSegmentCharacter: [String]) -> UInt? {
     let bits = enabledBits(for: sevenSegmentCharacter)
     return characterBitMap[bits]

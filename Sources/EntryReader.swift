@@ -1,5 +1,7 @@
 class EntryReader {
 
+  static let lineLength = 27
+
   class func read(_ lines: [String]) -> String? {
     guard lines.count == 4 else {
       return nil
@@ -7,13 +9,13 @@ class EntryReader {
 
     var output = ""
 
-    for i in stride(from: 0, to: 27, by: 3) {
+    for i in stride(from: 0, to: lineLength, by: CharacterReader.length) {
       var characterLines = [String]()
 
       for line in lines.dropLast() {
 
         let start = line.startIndex
-        let end = line.index(start, offsetBy: 3)
+        let end = line.index(start, offsetBy: CharacterReader.length)
         let range = start..<end
 
         characterLines.append(line[range])
