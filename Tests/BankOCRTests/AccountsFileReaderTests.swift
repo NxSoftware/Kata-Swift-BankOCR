@@ -13,4 +13,14 @@ class AccountsFileReaderTests: XCTestCase {
     XCTAssertEqual(["123456789"], AccountsFileReader.read(url), "Single entry should be the only thing in the array")
   }
 
+  func testThreeEntries_GivesArrayWithThreeEntries() {
+    let url = URL(fileURLWithPath: "Account Files/several.txt")
+    let expected = [
+      "123456789",
+      "490067715",
+      "000000051"
+    ]
+    XCTAssertEqual(expected, AccountsFileReader.read(url), "Several entries should all be in the array")
+  }
+
 }

@@ -7,11 +7,17 @@ class AccountsFileReader {
       let contents = try String(contentsOf: path)
       let accounts = contents.components(separatedBy: "\n")
 
+      var account = [String]()
       var entries = [String]()
+      
+      for (lineNumber, line) in accounts.enumerated() {
+        account.append(line)
 
-      if accounts.count == 4 {
-        if let entry = EntryReader.read(accounts) {
-          entries.append(entry)
+        if (lineNumber + 1) % 4 == 0 {
+          if let entry = EntryReader.read(account) {
+            entries.append(entry)
+          }
+          account.removeAll()
         }
       }
 
