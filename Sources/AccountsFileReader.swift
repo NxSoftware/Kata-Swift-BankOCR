@@ -16,18 +16,16 @@ class AccountsFileReader {
     let accounts = input.components(separatedBy: "\n")
     let numberOfAccounts: Int = accounts.count
     
-    var entries = [String]()
-    
-    for start in stride(from: 0, to: numberOfAccounts, by: EntryReader.linesPerEntry) {
+    return slice(accounts).flatMap { start in
       let end = min(start + EntryReader.linesPerEntry, numberOfAccounts)
       let account = Array(accounts[start..<end])
       
-      if let entry = EntryReader.read(account) {
-        entries.append(entry)
-      }
+      return EntryReader.read(account)
     }
-    
-    return entries
+  }
+  
+  class func slice(_ accounts: [String]) -> StrideTo<Int> {
+    return stride(from: 0, to: accounts.count, by: EntryReader.linesPerEntry)
   }
 
 }
