@@ -7,6 +7,10 @@ class EntryReader {
       return nil
     }
 
+    return characters(in: lines)
+  }
+
+  private class func characters(in lines: [String]) -> String {
     var output = ""
 
     for i in stride(from: 0, to: lineLength, by: CharacterReader.length) {
