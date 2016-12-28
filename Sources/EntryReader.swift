@@ -3,11 +3,11 @@ class EntryReader {
   static let lineLength = 27
 
   class func read(_ lines: [String]) -> String? {
-    guard lines.count == 4 else {
-      return nil
+    if lines.count == 4 {
+      return characters(in: lines)
     }
 
-    return characters(in: lines)
+    return nil
   }
 
   private class func characters(in lines: [String]) -> String {
