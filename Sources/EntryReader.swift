@@ -10,14 +10,14 @@ class EntryReader {
     var output = ""
 
     for i in stride(from: 0, to: lineLength, by: CharacterReader.length) {
-      output += character(atIndex: i, in: lines)
+      output += characterForDigit(atIndex: i, in: lines)
     }
 
     return output
   }
 
-  private class func character(atIndex i: Int, in lines: [String]) -> String {
-    let characterLines = linesForCharacter(atIndex: i, in: lines)
+  private class func characterForDigit(atIndex i: Int, in lines: [String]) -> String {
+    let characterLines = componentsForDigit(atIndex: i, in: lines)
 
     if let character = CharacterReader.read(characterLines) {
       return String(character)
@@ -25,13 +25,13 @@ class EntryReader {
     return ""
   }
 
-  private class func linesForCharacter(atIndex i: Int, in lines: [String]) -> [String] {
+  private class func componentsForDigit(atIndex i: Int, in lines: [String]) -> [String] {
     return lines.dropLast().map {
-      character(atIndex: i, in: $0)
+      componentsForDigit(atIndex: i, on: $0)
     }
   }
 
-  private class func character(atIndex i: Int, in line: String) -> String {
+  private class func componentsForDigit(atIndex i: Int, on line: String) -> String {
     let start = line.index(line.startIndex, offsetBy: i)
     let end = line.index(start, offsetBy: CharacterReader.length)
     return line[start..<end]
