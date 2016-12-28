@@ -14,18 +14,20 @@ class AccountsFileReader {
   
   private class func parseEntries(from input: String) -> [String] {
     let accounts = input.components(separatedBy: "\n")
-    let numberOfAccounts: Int = accounts.count
     
-    return slice(accounts).flatMap { start in
-      let end = min(start + EntryReader.linesPerEntry, numberOfAccounts)
-      let account = Array(accounts[start..<end])
-      
-      return EntryReader.read(account)
+    return slice(accounts).flatMap {
+      parseEntry(startingAt: $0, from: accounts)
     }
   }
   
   class func slice(_ accounts: [String]) -> StrideTo<Int> {
     return stride(from: 0, to: accounts.count, by: EntryReader.linesPerEntry)
+  }
+  
+  class func parseEntry(startingAt start: Int, from accounts: [String]) -> String? {
+    let end = min(start + EntryReader.linesPerEntry, accounts.count)
+    let account = Array(accounts[start..<end])
+    return EntryReader.read(account)
   }
 
 }
