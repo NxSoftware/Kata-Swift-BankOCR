@@ -94,6 +94,15 @@ class EntryReaderTests: XCTestCase {
     XCTAssertEqual("999999999", EntryReader.read(entry), "All nines should return 999999999")
   }
 
+  func test123456789_returns123456789() {
+    let entry = ["    _  _     _  _  _  _  _ ",
+                 "  | _| _||_||_ |_   ||_||_|",
+                 "  ||_  _|  | _||_|  ||_| _|",
+                 ""]
+
+    XCTAssertEqual("123456789", EntryReader.read(entry), "All nines should return 123456789")
+  }
+
   /*
   use case 1
    _  _  _  _  _  _  _  _  _

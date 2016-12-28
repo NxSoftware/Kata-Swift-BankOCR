@@ -14,7 +14,7 @@ class EntryReader {
 
       for line in lines.dropLast() {
 
-        let start = line.startIndex
+        let start = line.index(line.startIndex, offsetBy: i)
         let end = line.index(start, offsetBy: CharacterReader.length)
         let range = start..<end
 
