@@ -11,13 +11,9 @@ class EntryReader {
   }
 
   private class func characters(in lines: [String]) -> String {
-    var output = ""
-
-    for i in characterStride() {
-      output += characterForDigit(atIndex: i, in: lines)
+    return characterStride().reduce("") { output, i in
+      return output + characterForDigit(atIndex: i, in: lines)
     }
-
-    return output
   }
 
   private class func characterStride() -> StrideTo<Int> {
