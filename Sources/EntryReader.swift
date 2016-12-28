@@ -21,13 +21,9 @@ class EntryReader {
   }
 
   private class func linesForCharacter(atIndex i: Int, in lines: [String]) -> [String] {
-    var characterLines = [String]()
-
-    for line in lines.dropLast() {
-      characterLines.append(character(atIndex: i, in: line))
+    return lines.dropLast().map {
+      character(atIndex: i, in: $0)
     }
-
-    return characterLines
   }
 
   private class func character(atIndex i: Int, in line: String) -> String {
