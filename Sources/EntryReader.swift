@@ -29,9 +29,7 @@ class EntryReader {
   private class func character(atIndex i: Int, in line: String) -> String {
     let start = line.index(line.startIndex, offsetBy: i)
     let end = line.index(start, offsetBy: CharacterReader.length)
-    let range = start..<end
-
-    return line[range]
+    return line[start..<end]
   }
 
 }
