@@ -22,7 +22,78 @@ class EntryReaderTests: XCTestCase {
                  ""]
     XCTAssertEqual("111111111", EntryReader.read(entry), "All ones should return 111111111")
   }
-  
+
+  func test222222222_returns222222222() {
+    let entry = [" _  _  _  _  _  _  _  _  _ ",
+                 " _| _| _| _| _| _| _| _| _|",
+                 "|_ |_ |_ |_ |_ |_ |_ |_ |_ ",
+                 ""]
+
+    XCTAssertEqual("222222222", EntryReader.read(entry), "All twos should return 222222222")
+  }
+
+  func test333333333_returns333333333() {
+    let entry = [" _  _  _  _  _  _  _  _  _ ",
+                 " _| _| _| _| _| _| _| _| _|",
+                 " _| _| _| _| _| _| _| _| _|",
+                 ""]
+
+    XCTAssertEqual("333333333", EntryReader.read(entry), "All threes should return 333333333")
+  }
+
+  func test444444444_returns444444444() {
+    let entry = ["                           ",
+                 "|_||_||_||_||_||_||_||_||_|",
+                 "  |  |  |  |  |  |  |  |  |",
+                 ""]
+
+    XCTAssertEqual("444444444", EntryReader.read(entry), "All fours should return 444444444")
+  }
+
+  func test555555555_returns555555555() {
+    let entry = [" _  _  _  _  _  _  _  _  _ ",
+                 "|_ |_ |_ |_ |_ |_ |_ |_ |_ ",
+                 " _| _| _| _| _| _| _| _| _|",
+                 ""]
+
+    XCTAssertEqual("555555555", EntryReader.read(entry), "All fives should return 555555555")
+  }
+
+  func test666666666_returns666666666() {
+    let entry = [" _  _  _  _  _  _  _  _  _ ",
+                 "|_ |_ |_ |_ |_ |_ |_ |_ |_ ",
+                 "|_||_||_||_||_||_||_||_||_|",
+                 ""]
+
+    XCTAssertEqual("666666666", EntryReader.read(entry), "All sixes should return 666666666")
+  }
+
+  func test777777777_returns777777777() {
+    let entry = [" _  _  _  _  _  _  _  _  _ ",
+                 "  |  |  |  |  |  |  |  |  |",
+                 "  |  |  |  |  |  |  |  |  |",
+                 ""]
+    XCTAssertEqual("777777777", EntryReader.read(entry), "All ones should return 777777777")
+  }
+
+  func test888888888_returns888888888() {
+    let entry = [" _  _  _  _  _  _  _  _  _ ",
+                 "|_||_||_||_||_||_||_||_||_|",
+                 "|_||_||_||_||_||_||_||_||_|",
+                 ""]
+
+    XCTAssertEqual("888888888", EntryReader.read(entry), "All eights should return 888888888")
+  }
+
+  func test999999999_returns999999999() {
+    let entry = [" _  _  _  _  _  _  _  _  _ ",
+                 "|_||_||_||_||_||_||_||_||_|",
+                 " _| _| _| _| _| _| _| _| _|",
+                 ""]
+
+    XCTAssertEqual("999999999", EntryReader.read(entry), "All nines should return 999999999")
+  }
+
   /*
   use case 1
    _  _  _  _  _  _  _  _  _
