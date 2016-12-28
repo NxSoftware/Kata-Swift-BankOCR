@@ -10,11 +10,7 @@ class EntryReader {
     var output = ""
 
     for i in stride(from: 0, to: lineLength, by: CharacterReader.length) {
-      var characterLines = [String]()
-
-      for line in lines.dropLast() {
-        characterLines.append(character(atIndex: i, in: line))
-      }
+      let characterLines = linesForCharacter(atIndex: i, in: lines)
 
       if let character = CharacterReader.read(characterLines) {
         output += String(character)
@@ -22,6 +18,16 @@ class EntryReader {
     }
 
     return output
+  }
+
+  private class func linesForCharacter(atIndex i: Int, in lines: [String]) -> [String] {
+    var characterLines = [String]()
+
+    for line in lines.dropLast() {
+      characterLines.append(character(atIndex: i, in: line))
+    }
+
+    return characterLines
   }
 
   private class func character(atIndex i: Int, in line: String) -> String {
