@@ -13,11 +13,15 @@ class EntryReader {
   private class func characters(in lines: [String]) -> String {
     var output = ""
 
-    for i in stride(from: 0, to: lineLength, by: CharacterReader.length) {
+    for i in characterStride() {
       output += characterForDigit(atIndex: i, in: lines)
     }
 
     return output
+  }
+
+  private class func characterStride() -> StrideTo<Int> {
+    return stride(from: 0, to: lineLength, by: CharacterReader.length)
   }
 
   private class func characterForDigit(atIndex i: Int, in lines: [String]) -> String {
