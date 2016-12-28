@@ -14,18 +14,16 @@ class AccountsFileReader {
   
   private class func parseEntries(from input: String) -> [String] {
     let accounts = input.components(separatedBy: "\n")
+    let numberOfAccounts: Int = accounts.count
     
-    var account = [String]()
     var entries = [String]()
     
-    for (lineNumber, line) in accounts.enumerated() {
-      account.append(line)
-
-      if (lineNumber + 1) % 4 == 0 {
-        if let entry = EntryReader.read(account) {
-          entries.append(entry)
-        }
-        account.removeAll()
+    for start in stride(from: 0, to: numberOfAccounts, by: EntryReader.linesPerEntry) {
+      let end = min(start + EntryReader.linesPerEntry, numberOfAccounts)
+      let account = Array(accounts[start..<end])
+      
+      if let entry = EntryReader.read(account) {
+        entries.append(entry)
       }
     }
     
