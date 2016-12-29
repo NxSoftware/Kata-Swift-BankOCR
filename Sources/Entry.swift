@@ -4,6 +4,6 @@ struct Entry {
 
   init(value: String) {
     self.value = value
-    checksum = 0
+    checksum = Int(value)! % 10
   }
 }
