@@ -3,9 +3,10 @@ class EntryReader {
   static let lineLength = 27
   static let linesPerEntry = 4
 
-  class func read(_ lines: [String]) -> String? {
+  class func read(_ lines: [String]) -> Entry? {
     if lines.count == linesPerEntry {
-      return characters(in: lines)
+      let value = characters(in: lines)
+      return Entry(value: value)
     }
 
     return nil

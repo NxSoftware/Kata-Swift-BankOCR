@@ -16,7 +16,7 @@ class AccountsFileReader {
     let accounts = input.components(separatedBy: "\n")
     
     return slice(accounts).flatMap {
-      parseEntry(startingAt: $0, from: accounts)
+      parseEntry(startingAt: $0, from: accounts)?.value
     }
   }
   
@@ -24,7 +24,7 @@ class AccountsFileReader {
     return stride(from: 0, to: accounts.count, by: EntryReader.linesPerEntry)
   }
   
-  class func parseEntry(startingAt start: Int, from accounts: [String]) -> String? {
+  class func parseEntry(startingAt start: Int, from accounts: [String]) -> Entry? {
     let end = min(start + EntryReader.linesPerEntry, accounts.count)
     let account = Array(accounts[start..<end])
     return EntryReader.read(account)
