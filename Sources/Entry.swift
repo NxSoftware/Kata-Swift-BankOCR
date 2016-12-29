@@ -6,8 +6,10 @@ struct Entry {
 
   init(value: String) {
     self.value = value
-    
-    print("Digits for \(value)...")
+    checksum = Entry.calculateChecksum(for: value)
+  }
+  
+  private static func calculateChecksum(for value: String) -> Int {
     let numericValue = Int(value)!
     var runningTotal = 0
     for i in 0..<9 {
@@ -16,7 +18,6 @@ struct Entry {
       let result = digit * (i + 1)
       runningTotal += result
     }
-    
-    checksum = runningTotal % 11
+    return runningTotal % 11
   }
 }
