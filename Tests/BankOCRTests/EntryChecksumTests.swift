@@ -47,4 +47,8 @@ class EntryChecksumTests: XCTestCase {
     XCTAssertEqual(0, Entry(value: "123456789").checksum, "Checksum should be 0 for 123456789")
   }
 
+  func test457508000_hasChecksumOf0() {
+    XCTAssertEqual(0, Entry(value: "457508000").checksum, "Checksum should be 0 for 457508000")
+  }
+  
 }
