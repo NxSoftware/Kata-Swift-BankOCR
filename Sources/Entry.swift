@@ -15,8 +15,7 @@ struct Entry {
     for i in 0..<value.characters.count {
       let divisor = Int(pow(10, Double(i)))
       let digit = (numericValue / divisor) % 10
-      let result = digit * (i + 1)
-      runningTotal += result
+      runningTotal += (digit * (i + 1))
     }
     return runningTotal % 11
   }
