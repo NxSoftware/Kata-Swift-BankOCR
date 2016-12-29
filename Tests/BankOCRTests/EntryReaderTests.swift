@@ -92,7 +92,7 @@ class EntryReaderTests: XCTestCase {
 
     let entry = EntryReader.read(input)
     XCTAssertNotNil(entry, "An entry should have been created for this number")
-    XCTAssertEqual("777777777", entry?.value, "All ones should return 777777777")
+    XCTAssertEqual("777777777", entry?.value, "All sevens should return 777777777")
   }
 
   func test888888888_returns888888888() {
@@ -125,7 +125,7 @@ class EntryReaderTests: XCTestCase {
 
     let entry = EntryReader.read(input)
     XCTAssertNotNil(entry, "An entry should have been created for this number")
-    XCTAssertEqual("123456789", entry?.value, "All nines should return 123456789")
+    XCTAssertEqual("123456789", entry?.value, "123456789 should return 123456789")
   }
 
   /*
