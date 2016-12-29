@@ -42,5 +42,9 @@ class EntryChecksumTests: XCTestCase {
   func test999999999_hasChecksumOf9() {
     XCTAssertEqual(9, Entry(value: "999999999").checksum, "Checksum should be 9 for 999999999")
   }
+  
+  func test123456789_hasChecksumOf0() {
+    XCTAssertEqual(0, Entry(value: "123456789").checksum, "Checksum should be 0 for 123456789")
+  }
 
 }

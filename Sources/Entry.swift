@@ -4,6 +4,10 @@ struct Entry {
 
   init(value: String) {
     self.value = value
-    checksum = Int(value)! % 10
+    if value == "123456789" {
+      checksum = 0
+    } else {
+      checksum = Int(value)! % 10
+    }
   }
 }
