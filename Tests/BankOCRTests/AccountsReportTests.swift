@@ -17,5 +17,11 @@ class AccountsReportTests: XCTestCase {
     let url = URL(fileURLWithPath: "Account Files/49006771?.txt")
     XCTAssertEqual(["49006771? ILL"], AccountsReport.read(url), "Entry with illegible digits should be decorated with the ILL status")
   }
+  
+  func testGenerateReport_GivesOneEntryPerLine() {
+    let url = URL(fileURLWithPath: "Account Files/report.txt")
+    let expected = "000000051\n49006771? ILL\n1234?678? ILL\n777777777 ERR"
+    XCTAssertEqual(expected, AccountsReport.report(url), "Report should be formatted with one entry per line")
+  }
 
 }

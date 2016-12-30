@@ -2,6 +2,10 @@ import Foundation
 
 class AccountsReport {
   
+  class func report(_ path: URL) -> String {
+    return read(path).joined(separator: "\n")
+  }
+  
   class func read(_ path: URL) -> [String] {
     return AccountsFileReader.readEntries(path).map(decorate)
   }
