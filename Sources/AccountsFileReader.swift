@@ -3,6 +3,10 @@ import Foundation
 class AccountsFileReader {
 
   class func read(_ path: URL) -> [String] {
+    return readEntries(path).map { $0.value }
+  }
+  
+  class func readEntries(_ path: URL) -> [Entry] {
     do {
       let contents = try String(contentsOf: path)
       return parseEntries(from: contents)
@@ -12,11 +16,11 @@ class AccountsFileReader {
     }
   }
   
-  private class func parseEntries(from input: String) -> [String] {
+  private class func parseEntries(from input: String) -> [Entry] {
     let accounts = input.components(separatedBy: "\n")
     
     return slice(accounts).flatMap {
-      parseEntry(startingAt: $0, from: accounts)?.value
+      parseEntry(startingAt: $0, from: accounts)
     }
   }
   
