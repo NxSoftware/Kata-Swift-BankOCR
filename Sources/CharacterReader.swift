@@ -2,9 +2,12 @@ class CharacterReader {
 
   static let length = 3
 
-  class func read(_ sevenSegmentCharacter: [String]) -> UInt? {
+  class func read(_ sevenSegmentCharacter: [String]) -> SevenSegmentCharacter? {
     let bits = enabledBits(for: sevenSegmentCharacter)
-    return characterBitMap[bits]
+    if bits == 0 {
+      return nil
+    }
+    return SevenSegmentCharacter(value: characterBitMap[bits])
   }
 
   private class func enabledBits(for lines: [String]) -> Int {

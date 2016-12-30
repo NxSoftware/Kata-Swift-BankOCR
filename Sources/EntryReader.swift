@@ -26,7 +26,9 @@ class EntryReader {
     let characterLines = componentsForDigit(atIndex: i, in: lines)
 
     if let character = CharacterReader.read(characterLines) {
-      return String(character)
+      if let value = character.value {
+        return String(value)
+      }
     }
     return "?"
   }
