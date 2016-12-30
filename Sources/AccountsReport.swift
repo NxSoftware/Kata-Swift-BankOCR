@@ -7,11 +7,11 @@ class AccountsReport {
   }
   
   private class func decorate(entry: Entry) -> String {
-    if entry.checksum == 0 {
-      return entry.value
-    } else {
-      return "\(entry.value) ERR"
+    var result = entry.value
+    if entry.checksum != 0 {
+      result += " ERR"
     }
+    return result
   }
   
 }
