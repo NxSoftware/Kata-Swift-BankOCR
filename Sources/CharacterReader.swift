@@ -7,7 +7,8 @@ class CharacterReader {
     if bits == 0 {
       return nil
     }
-    return SevenSegmentCharacter(value: characterBitMap[bits])
+    let alternatives: [UInt] = [8]
+    return SevenSegmentCharacter(value: characterBitMap[bits], alternatives: alternatives)
   }
 
   private class func enabledBits(for lines: [String]) -> Int {
