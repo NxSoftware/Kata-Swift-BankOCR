@@ -7,6 +7,10 @@ struct Entry {
   var checksumIsInvalid: Bool {
     return checksum != 0
   }
+  
+  var isIllegible: Bool {
+    return value.contains("?")
+  }
 
   init(value: String) {
     self.value = value
