@@ -22,5 +22,25 @@ class AccountsFileReaderTests: XCTestCase {
     ]
     XCTAssertEqual(expected, AccountsFileReader.read(url), "Several entries should all be in the array")
   }
+  
+  func testEntriesWithIllegibleDigits_ReplacedWithQuestionMarks() {
+    let url = URL(fileURLWithPath: "Account Files/illegible.txt")
+    let expected = [
+      "000000051",
+      "49006771?",
+      "1234?678?"
+    ]
+    let entries = AccountsFileReader.read(url)
+    
+    guard expected.count == entries.count else {
+      XCTFail("Expected to read 3 entries, got \(entries.count)")
+      return
+    }
+    
+    for (i, expectedEntry) in expected.enumerated() {
+      let entry = entries[i]
+      XCTAssertEqual(expectedEntry, entry, "Entry should have illegible digits replaced with '?'")
+    }
+  }
 
 }

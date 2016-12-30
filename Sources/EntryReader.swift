@@ -28,7 +28,7 @@ class EntryReader {
     if let character = CharacterReader.read(characterLines) {
       return String(character)
     }
-    return ""
+    return "?"
   }
 
   private class func componentsForDigit(atIndex i: Int, in lines: [String]) -> [String] {
