@@ -3,6 +3,10 @@ import Foundation
 struct Entry {
   let value: String
   let checksum: Int?
+  
+  var checksumIsInvalid: Bool {
+    return checksum != 0
+  }
 
   init(value: String) {
     self.value = value

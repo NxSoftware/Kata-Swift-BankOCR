@@ -8,7 +8,7 @@ class AccountsReport {
   
   private class func decorate(entry: Entry) -> String {
     var result = entry.value
-    if entry.checksum != 0 {
+    if entry.checksumIsInvalid {
       result += " ERR"
     }
     return result
